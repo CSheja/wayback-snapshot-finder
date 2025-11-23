@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayback Snapshot Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🕰️ Wayback Snapshot Finder</h1>
+            <p class="subtitle">Search and explore archived snapshots from the Internet Archive</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="urlInput" 
+                    placeholder="Enter a URL (e.g., example.com, nytimes.com)"
+                    autocomplete="off"
+                >
+                <button id="searchBtn">Search Snapshots</button>
+            </div>
+            <p class="hint">Enter any website URL to view its archived history</p>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Fetching snapshots from the Wayback Machine...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMsg" class="error-msg hidden"></div>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section hidden">
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-label">Total Snapshots:</span>
+                    <span id="totalCount" class="stat-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Date Range:</span>
+                    <span id="dateRange" class="stat-value">-</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Showing:</span>
+                    <span id="showingCount" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <!-- Filters and Sort -->
+            <div class="controls">
+                <div class="filter-group">
+                    <label for="statusFilter">Filter by Status:</label>
+                    <select id="statusFilter">
+                        <option value="all">All Status Codes</option>
+                        <option value="200">200 (Success)</option>
+                        <option value="301">301 (Redirect)</option>
+                        <option value="302">302 (Redirect)</option>
+                        <option value="404">404 (Not Found)</option>
+                        <option value="500">500 (Server Error)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="yearFilter">Filter by Year:</label>
+                    <select id="yearFilter">
+                        <option value="all">All Years</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="searchSnapshotInput">Search Snapshots:</label>
+                    <input 
+                        type="text" 
+                        id="searchSnapshotInput" 
+                        placeholder="Search in results..."
+                    >
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortBy">Sort by:</label>
+                    <select id="sortBy">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="status">Status Code</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Snapshots Table -->
+            <div class="table-container">
+                <table id="snapshotsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date & Time</th>
+                            <th>Original URL</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="snapshotsBody">
+                        <!-- Snapshots will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Data provided by <a href="https://archive.org/" target="_blank">Internet Archive</a> Wayback Machine</p>
+            <p>Built as an educational project | No frameworks used</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
