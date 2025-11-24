@@ -458,26 +458,38 @@ Expected Output: You should see a mix of "Web01" and "Web02" responses, proving 
 
 ---
 
-### Deployment Verification
+## Deployment Verification
 
-#### Test Web01 Directly
+All deployment steps have been completed and tested:
+
+### Server Status
+
+- Web01 (54.161.135.230): Active and serving application
+- Web02 (13.221.22.9): Active and serving application  
+- Lb01 (44.202.232.89): Active and distributing traffic via round-robin
+
+### Verification Commands
+
+Test individual servers:
 ```bash
 curl http://54.161.135.230
-```
-
-#### Test Web02 Directly
-```bash
 curl http://13.221.22.9
 ```
 
-#### Test Load Balancer
+Test load balancer:
 ```bash
-curl http://44.202.232.89
+for i in {1..10}; do curl -s http://44.202.232.89 | grep "Server:"; done
 ```
 
-#### Test in Browser
-Open: http://44.202.232.89 and verify the application loads correctly.
+Expected result: Alternating responses from Web01 and Web02
 
+### Access Points
+
+- Direct Web01 access: http://54.161.135.230
+- Direct Web02 access: http://13.221.22.9
+- Load balanced access: http://44.202.232.89 (recommended)
+
+All endpoints support full application functionality including search, filter, sort, and direct access to archived snapshots.
 ---
 
 ## Architecture
